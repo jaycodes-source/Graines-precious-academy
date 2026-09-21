@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>GPA Admin Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        body {
+            background: #eef3f8;
+        }
+
+        .admin-box {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .admin-panel {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .admin-panel h2 {
+            color: #071b3a;
+            margin-bottom: 20px;
+        }
+
+        .admin-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ccd5e0;
+            border-radius: 7px;
+        }
+
+        .student-row {
+            background: #f4f7fb;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .danger {
+            background: #c0392b;
+            color: white;
+        }
+
+        #dashboard {
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="admin-box">
+
+    <div id="loginBox" class="admin-panel">
+
+        <h2>GPA Admin Login</h2>
+
+        <input
+            class="admin-input"
+            type="text"
+            id="adminId"
+            placeholder="Admin ID"
+        >
+
+        <input
+            class="admin-input"
+            type="password"
+            id="adminPassword"
+            placeholder="Password"
+        >
+
+        <button
+            class="btn"
+            onclick="login()"
+        >
+            Login
+        </button>
+
+        <p id="loginMessage"></p>
+
+    </div>
+
+
+    <div id="dashboard">
+
+        <div class="admin-panel">
+
+            <h2>Admin Dashboard</h2>
+
+            <button
+                class="btn"
+                onclick="showStudents()"
+            >
+                Students
+            </button>
+
+            <button
+                class="btn"
+                onclick="showSettings()"
+            >
+                Settings
+            </button>
+
+            <button
+                class="btn danger"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+
+        <div
+            id="studentsPanel"
+            class="admin-panel"
+        >
+
+            <h2>Registered Students</h2>
+
+            <div id="studentList"></div>
+
+        </div>
+
+
+        <div
+            id="settingsPanel"
+            class="admin-panel"
+        >
+
+            <h2>School Settings</h2>
+
+            <input
+                class="admin-input"
+                type="text"
+                id="settingsWhatsapp"
+                placeholder="WhatsApp number e.g. 2348012345678"
+            >
+
+            <input
+                class="admin-input"
+                type="text"
+                id="settingsPhone"
+                placeholder="School phone number"
+            >
+
+            <input
+                class="admin-input"
+                type="email"
+                id="settingsEmail"
+                placeholder="School email"
+            >
+
+            <button
+                class="btn"
+                onclick="saveSettings()"
+            >
+                Save Settings
+            </button>
+
+            <p id="settingsMessage"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function login() {
+
+    const id =
+        document.getElementById("adminId").value;
+
+    const password =
+        document.getElementById("adminPassword").value;
+
+    if (
+        id === "admin" &&
+        password === "admin123"
+    ) {
+
+        document.getElementById(
+            "loginBox"
+        ).style.display = "none";
+
+        document.getElementById(
+            "dashboard"
+        ).style.display = "block";
+
+        showStudents();
+
+    } else {
+
+        document.getElementById(
+            "loginMessage"
+        ).textContent =
+            "Incorrect admin ID or password.";
+    }
+}
+
+
+function logout() {
+
+    document.getElementById(
+        "dashboard"
+    ).style.display = "none";
+
+    document.getElementById(
+        "loginBox"
+    ).style.display = "block";
+
+    document.getElementById(
+        "adminId"
+    ).value = "";
+
+    document.getElementById(
+        "adminPassword"
+    ).value = "";
+}
+
+
+function showStudents() {
+
+    const students =
+        JSON.parse(
+            localStorage.getItem("registeredStudents")
+        ) || [];
+
+    const list =
+        document.getElementById("studentList");
+
+    if (students.length === 0) {
+
+        list.innerHTML =
+            "<p>No students have registered yet.</p>";
+
+        return;
+    }
+
+    list.innerHTML = "";
+
+    students.forEach(function(student) {
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "student-row";
+
+        div.innerHTML = `
+
+            <strong>${student.name}</strong><br>
+
+            Student ID:
+            ${student.id}<br>
+
+            Class:
+            ${student.className}<br>
+
+            Parent/Guardian:
+            ${student.parent}<br>
+
+            Phone:
+            ${student.phone}<br>
+
+            Registration Date:
+            ${student.date}
+
+        `;
+
+        list.appendChild(div);
+
+    });
+}
+
+
+function showSettings() {
+
+    const settings =
+        JSON.parse(
+            localStorage.getItem("schoolSettings")
+        ) || {};
+
+    document.getElementById(
+        "settingsWhatsapp"
+    ).value =
+        settings.whatsapp || "";
+
+    document.getElementById(
+        "settingsPhone"
+    ).value =
+        settings.phone || "";
+
+    document.getElementById(
+        "settingsEmail"
+    ).value =
+        settings.email || "";
+}
+
+
+function saveSettings() {
+
+    const settings = {
+
+        whatsapp:
+            document.getElementById(
+                "settingsWhatsapp"
+            ).value,
+
+        phone:
+            document.getElementById(
+                "settingsPhone"
+            ).value,
+
+        email:
+            document.getElementById(
+                "settingsEmail"
+            ).value
+    };
+
+    localStorage.setItem(
+        "schoolSettings",
+        JSON.stringify(settings)
+    );
+
+    document.getElementById(
+        "settingsMessage"
+    ).textContent =
+        "Settings saved successfully.";
+}
+
+</script>
+
+</body>
+</html>
