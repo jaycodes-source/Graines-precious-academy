@@ -1,1 +1,169 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graines Precious Academy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <img src="assets/school-logo.jpg" alt="Graines Precious Academy Logo">
+        <div>
+            <h1>Graines Precious Academy</h1>
+            <p>Wisdom is the Principal Thing</p>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#timetable">Timetable</a>
+        <a href="#announcements">Announcements</a>
+        <a href="#register">Registration</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h2>Welcome to Graines Precious Academy</h2>
+        <p>Building future leaders through knowledge, discipline and excellence.</p>
+        <a href="#register" class="btn">Student Registration</a>
+    </div>
+</section>
+
+<section id="about" class="section">
+    <h2>About Our School</h2>
+    <p>
+        Graines Precious Academy is committed to providing quality education
+        in a safe, supportive and inspiring environment.
+    </p>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Quality Education</h3>
+            <p>We encourage academic excellence and lifelong learning.</p>
+        </div>
+
+        <div class="card">
+            <h3>Discipline</h3>
+            <p>We help students develop responsibility and good character.</p>
+        </div>
+
+        <div class="card">
+            <h3>Future Leaders</h3>
+            <p>We prepare students for success in school and beyond.</p>
+        </div>
+    </div>
+</section>
+
+<section id="timetable" class="section timetable-section">
+    <h2>School Timetable</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>8:00 - 9:00</td>
+                    <td>Mathematics</td>
+                    <td>English</td>
+                    <td>Biology</td>
+                    <td>Physics</td>
+                    <td>Chemistry</td>
+                </tr>
+
+                <tr>
+                    <td>9:00 - 10:00</td>
+                    <td>English</td>
+                    <td>Mathematics</td>
+                    <td>Chemistry</td>
+                    <td>Biology</td>
+                    <td>Physics</td>
+                </tr>
+
+                <tr>
+                    <td>10:00 - 10:30</td>
+                    <td colspan="5">BREAK</td>
+                </tr>
+
+                <tr>
+                    <td>10:30 - 11:30</td>
+                    <td>Physics</td>
+                    <td>Biology</td>
+                    <td>English</td>
+                    <td>Mathematics</td>
+                    <td>ICT</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="announcements" class="section">
+    <h2>Announcements & Events</h2>
+
+    <div id="announcement-list" class="cards">
+        <div class="card">
+            <h3>Welcome Back</h3>
+            <p>Welcome to a new academic session.</p>
+        </div>
+
+        <div class="card">
+            <h3>School Activities</h3>
+            <p>Students should check the school notice board for upcoming activities.</p>
+        </div>
+    </div>
+</section>
+
+<section id="register" class="section registration">
+    <h2>Student Registration</h2>
+
+    <form id="registrationForm">
+        <input type="text" id="studentName" placeholder="Student Full Name" required>
+
+        <input type="text" id="studentClass" placeholder="Class" required>
+
+        <input type="text" id="parentName" placeholder="Parent/Guardian Name" required>
+
+        <input type="tel" id="parentPhone" placeholder="Parent Phone Number" required>
+
+        <button type="submit" class="btn">Register Student</button>
+    </form>
+
+    <p id="registrationMessage"></p>
+</section>
+
+<section id="contact" class="section contact">
+    <h2>Contact Us</h2>
+
+    <p><strong>School:</strong> Graines Precious Academy</p>
+    <p><strong>Address:</strong> Asewiyon Crescent, Lajo, Igbogbo, Lagos</p>
+    <p><strong>Phone:</strong> <span id="schoolPhone">Contact school administration</span></p>
+    <p><strong>Email:</strong> <span id="schoolEmail">school@example.com</span></p>
+
+    <a id="whatsappLink" class="btn whatsapp" href="#" target="_blank">
+        Register Through WhatsApp
+    </a>
+</section>
+
+<footer>
+    <p>&copy; 2026 Graines Precious Academy. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
